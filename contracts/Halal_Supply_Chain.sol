@@ -15,32 +15,12 @@ contract HalalSupplyChain {
     mapping(address => UserDetail) public users;
     
     function registerUser(Role _role) public {
-        require(!users[msg.sender].isRegistered, "User already registered");
+        require(!users[msg.sender].isRegistered, "User already registered!");
 
         users[msg.sender].isRegistered = true;
         users[msg.sender].isLoggedIn = false;
         users[msg.sender].role = _role;
 
-    }
-
-    function login() public {
-        require(users[msg.sender].isRegistered, "User not registered");
-        require(!users[msg.sender].isLoggedIn, "User already logged in");
-
-        users[msg.sender].isLoggedIn = true;
-
-    }
-
-    function logout() public {
-        require(users[msg.sender].isRegistered, "User not registered");
-        require(users[msg.sender].isLoggedIn, "User not logged in");
-
-        users[msg.sender].isLoggedIn = false;
-
-    }
-
-    function checkLoginStatus(address userAddress) public view returns (bool) {
-        return users[userAddress].isLoggedIn;
     }
 
     // 
@@ -65,6 +45,7 @@ contract HalalSupplyChain {
     function initialiseBatch(
         string memory _location, 
         string memory _content) external onlyFarmer {
+        require(users[msg.sender].isRegistered, "User not registered!");
         
         flows[batchID].push(
             Flow({
@@ -81,8 +62,9 @@ contract HalalSupplyChain {
         uint256 _batchID,
         string memory _location,
         string memory _content) external {
+        require(users[msg.sender].isRegistered, "User not registered!");
 
-        require(flows[_batchID].length > 0, "Batch does not exist");
+        require(flows[_batchID].length > 0, "Batch does not exist!");
 
         flows[_batchID].push(
             Flow({
