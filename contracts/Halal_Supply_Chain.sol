@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 contract HalalSupplyChain {
 
+    // -- USER --
     enum Role {None, Farmer, Slaughterer, Distributor, Retailer}
 
     struct UserDetail {
@@ -20,12 +21,8 @@ contract HalalSupplyChain {
         users[msg.sender].isRegistered = true;
         users[msg.sender].isLoggedIn = false;
         users[msg.sender].role = _role;
-
     }
-
-    // 
-    // 
-    // 
+    // -- -- --
 
     struct Flow {
         address updatedBy;
@@ -37,6 +34,7 @@ contract HalalSupplyChain {
     mapping(uint256 => Flow[]) public flows;
     uint256 public batchID;
 
+    // -- CREATE NEW BATCH --
     modifier onlyFarmer(){
         require(users[msg.sender].role == Role.Farmer, "Only farmer allowed");
         _;
@@ -58,6 +56,7 @@ contract HalalSupplyChain {
         batchID++;    
     }
 
+    // -- ADD MORE FLOWS --
     function addFlow(
         uint256 _batchID,
         string memory _location,
@@ -76,6 +75,7 @@ contract HalalSupplyChain {
         );
     }
 
+    // -- FOR CONSUMER TO SEE THE HISTORY --
     function getAllFlows(uint256 _batchID) external view returns (Flow[] memory) {
         return flows[_batchID];
     }
