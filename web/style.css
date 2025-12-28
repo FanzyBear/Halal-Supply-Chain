@@ -13,6 +13,8 @@ html {
   scroll-behavior: smooth;
 }
 /*  */
+/*  */
+/*  */
 body {
   background-color: #000000;
   opacity: 1;
@@ -25,6 +27,13 @@ body {
   );
   background-size: 18px 18px;
 }
+
+.text-bold {
+  font-weight: bold;
+}
+/*  */
+/*  */
+/*  */
 .main {
   min-height: 100vh;
   display: flex;
@@ -73,6 +82,98 @@ body {
           cursor: pointer;
         }
       }
+    }
+  }
+}
+/*  */
+/*  */
+/*  */
+.consumer {
+  /* display: flex; */
+  justify-content: center;
+  display: none;
+
+  .consumer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+
+    .consumer-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 400px;
+      border: 1px solid var(--green);
+      border-radius: 15px;
+      color: var(--white);
+      padding: 20px;
+
+      .batch-status {
+        border-bottom: 1px solid var(--green);
+        padding-bottom: 10px;
+        text-align: center;
+      }
+
+      .block-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .consumer-chain {
+      height: 50px;
+      border-right: 3px solid var(--green);
+    }
+  }
+}
+/*  */
+/*  */
+/*  */
+.worker {
+  /* display: flex; */
+  justify-content: center;
+  display: none;
+
+  .worker-container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    gap: 20px;
+
+    .worker-address {
+      color: var(--white);
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .worker-role-register {
+      display: flex;
+      gap: 30px;
+
+      button {
+        width: 200px;
+        padding: 11px 20px;
+        background-color: transparent;
+        border: 1px solid var(--green);
+        border-radius: 9px;
+        font-size: 18px;
+        color: var(--white);
+        transition: 0.5s;
+
+        &:hover {
+          background-color: var(--green);
+          color: var(--black);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .worker-role {
+      color: var(--white);
+      font-size: 18px;
+      text-align: center;
     }
   }
 }
